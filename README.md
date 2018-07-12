@@ -1,4 +1,6 @@
-![checkmate](https://raw.githubusercontent.com/TGPSKI/react-native-checkmate/master/assets/checkmate.png)
+# Checkmate for react native
+
+Checkmate is a environment validation tool for React Native projects. Add a checkmate key and corresponding object to your package.json file and checkmate step to your fastfile to run pre-build checks.
 
 # package.json example
 
