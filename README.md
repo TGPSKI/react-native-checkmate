@@ -208,7 +208,7 @@ Validates custom node path parameter, gradle tasks, and custom dirs / files rela
 }
 ```
 
-Validates custom node path parameter, gradle tasks, and custom dirs / files related to Android.
+Validates custom node path parameter, gradle tasks, and custom dirs / files related to iOS.
 
 * __nodePath (boolean)__ <br/> Enables presence check of NODE_BINARY variable in $PROJECT_ROOT/$nodePathDir/$nodePathFilename. NODE_BINARY is sourced in Xcode build phases to use NVM node binary.
 * __nodePathDir (string)__ <br/> Set path to find $nodePathFilename, relative to $PROJECT_ROOT
