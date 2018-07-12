@@ -1,4 +1,4 @@
-![checkmate](https://raw.githubusercontent.com/TGPSKI/checkmate/master/assets/checkmate.png)
+![checkmate](https://raw.githubusercontent.com/TGPSKI/react-native-checkmate/master/assets/checkmate.png)
 
 # package.json example
 
