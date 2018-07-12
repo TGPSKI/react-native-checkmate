@@ -20,10 +20,10 @@ const { envVarsCheck } = require('./env.js');
 
 const cwd = process.cwd().concat('/');
 
-try {
-  var { checkmate } = require(`${cwd}package.json`);
-} catch (err) {
-  throw new Error('Checkmate object not present in package.json');
+const { checkmate } = require(`${cwd}package.json`);
+
+if (checkmate == null) {
+  throw Error('Checkmate object not present in package.json');
 }
 
 const newline = () => console.log('');
