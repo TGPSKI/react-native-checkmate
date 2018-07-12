@@ -1,17 +1,14 @@
-module.exports = {
-  yarnIntegrityCheck: yarnIntegrityCheck,
-  nodePathCheck: nodePathCheck
-};
+const shell = require('shelljs');
 
 // Verify node_modules vs yarn lockfile
-function yarnIntegrityCheck() {
+function yarnIntegrityCheck(cwd) {
   shell.cd(cwd);
   let out = shell.exec('yarn check --integrity').code;
   return out ? false : true;
 }
 
 // Check node path locations for packager
-function nodePathCheck(platform, customPath = null) {
+function nodePathCheck(platform, cwd, customPathIOS = null) {
   const ios = customPath => {
     if (customPath == null) {
       throw Error('iOS node path not defined.');
@@ -46,3 +43,8 @@ function nodePathCheck(platform, customPath = null) {
       return ios(customPath) && android();
   }
 }
+
+module.exports = {
+  yarnIntegrityCheck: yarnIntegrityCheck,
+  nodePathCheck: nodePathCheck
+};

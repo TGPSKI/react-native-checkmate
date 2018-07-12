@@ -1,6 +1,4 @@
-module.exports = {
-  versionsCheck: versionsCheck
-};
+const shell = require('shelljs');
 
 // Checks program versions for predefined version commands
 function versionsCheck(versions) {
@@ -57,3 +55,7 @@ function versionsCheck(versions) {
   });
   return out.length ? out : true;
 }
+
+module.exports = {
+  versionsCheck: versionsCheck
+};

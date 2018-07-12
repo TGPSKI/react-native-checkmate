@@ -1,11 +1,4 @@
-module.exports = {
-  dirCheck: dirCheck,
-  dirsCheck: dirsCheck,
-  fileCheck: fileCheck,
-  filesCheck: filesCheck,
-  programCheck: programCheck,
-  programsCheck: programsCheck
-};
+const shell = require('shelljs');
 
 // Check individual directory for presence
 function dirCheck(dir) {
@@ -21,7 +14,7 @@ function dirsCheck(dirs) {
   const dirErrors = [];
   dirs.forEach(dir => {
     if (!dirCheck(dir)) {
-      dirErrors.push(`${dir} not found`);
+      dirErrors.push(`Directory "${dir}" not found`);
     }
   });
 
@@ -42,7 +35,7 @@ function filesCheck(files) {
   const fileErrors = [];
   files.forEach(file => {
     if (!shell.test('-f', file)) {
-      fileErrors.push(`${file} not found`);
+      fileErrors.push(`File "${file}" not found`);
     }
   });
 
@@ -63,8 +56,17 @@ function programsCheck(programs) {
   const programErrors = [];
   programs.forEach(program => {
     if (!programCheck(program)) {
-      programErrors.push(`${program} not found`);
+      programErrors.push(`Program "${program}" not found`);
     }
   });
   return programErrors.length ? programErrors : true;
 }
+
+module.exports = {
+  dirCheck: dirCheck,
+  dirsCheck: dirsCheck,
+  fileCheck: fileCheck,
+  filesCheck: filesCheck,
+  programCheck: programCheck,
+  programsCheck: programsCheck
+};

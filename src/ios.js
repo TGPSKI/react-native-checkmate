@@ -1,9 +1,7 @@
-module.exports = {
-  iosPodChecker: iosPodChecker
-};
+const shell = require('shelljs');
 
 // Podfile.lock and Pods/Manifest.lock should match exactly
-function iosPodChecker() {
+function iosPodCheck(cwd) {
   const iosDir = cwd.concat('ios');
   const podfileLockPath = iosDir.concat('/Podfile.lock');
   const manifestLockPath = iosDir.concat('/Pods/Manifest.lock');
@@ -11,3 +9,7 @@ function iosPodChecker() {
 
   return podSyncStatus ? false : true;
 }
+
+module.exports = {
+  iosPodCheck: iosPodCheck
+};

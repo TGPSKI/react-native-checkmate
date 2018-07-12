@@ -1,8 +1,7 @@
 {
   "name": "react-native-checkmate",
   "version": "0.2.0",
-  "description":
-    "Pre-build validation for tool versions, programs, environment, node, yarn, Android, iOS, and custom files.",
+  "description": "Pre-build validation for tool versions, programs, environment, node, yarn, Android, iOS, and custom files.",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -11,10 +10,87 @@
     "type": "git",
     "url": "github.com/TGPSKI/react-native-checkmate.git"
   },
-  "keywords": ["React", "Native", "build", "validation", "pre-build", "checks"],
+  "keywords": [
+    "React",
+    "Native",
+    "build",
+    "validation",
+    "pre-build",
+    "checks"
+  ],
   "author": "TGPSKI",
   "license": "MIT",
+  "bin": {
+    "checkmate": "./src/exec.js"
+  },
   "dependencies": {
     "shelljs": "^0.8.2"
+  },
+  "devDependencies": {
+    "jest": "^23.4.0"
+  },
+  "checkmate": {
+    "verbose": false,
+    "shellPath": "/bin/zsh",
+    "silentShell": true,
+    "programs": [
+      "fastlane",
+      "gem",
+      "pod",
+      "react-native",
+      "badge"
+    ],
+    "versions": {
+      "macOS": "10.13.6",
+      "node": "v8.11.3",
+      "ruby": "2.3.1p112",
+      "xcode": "9.4.1",
+      "yarn": "1.7.0",
+      "npm": "6.1.0"
+    },
+    "envVars": [
+      "ANDROID_SDK",
+      "ANDROID_SDK_TOOLS",
+      "ANDROID_PLATFORM_TOOLS"
+    ],
+    "env": {
+      "dir": "env",
+      "buildTypes": [
+        "dev",
+        "staging",
+        "release"
+      ]
+    },
+    "node": {
+      "yarnIntegrity": true,
+      "dirs": [
+        "node_modules"
+      ],
+      "files": [
+        "yarn.lock"
+      ]
+    },
+    "android": {
+      "nodePath": true,
+      "gradle": true,
+      "dirs": [
+        "android"
+      ],
+      "files": []
+    },
+    "ios": {
+      "nodePath": true,
+      "nodePathDir": "env",
+      "nodePathFilename": "node_binary",
+      "pods": false,
+      "dirs": [
+        "ios"
+      ],
+      "files": []
+    },
+    "other": {
+      "dirs": [],
+      "files": []
+    }
   }
 }

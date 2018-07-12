@@ -1,6 +1,4 @@
-module.exports = {
-  envVarsCheck: envVarsCheck
-};
+const { dirsCheck } = require('./general.js');
 
 // Check environment variables for presence
 function envVarsCheck(envVars) {
@@ -27,3 +25,7 @@ function envVarsCheck(envVars) {
     return true;
   }
 }
+
+module.exports = {
+  envVarsCheck: envVarsCheck
+};
