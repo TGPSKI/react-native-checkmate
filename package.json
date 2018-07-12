@@ -1,0 +1,20 @@
+{
+  "name": "react-native-checkmate",
+  "version": "0.2.0",
+  "description":
+    "Pre-build validation for tool versions, programs, environment, node, yarn, Android, iOS, and custom files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/TGPSKI/react-native-checkmate.git"
+  },
+  "keywords": ["React", "Native", "build", "validation", "pre-build", "checks"],
+  "author": "TGPSKI",
+  "license": "MIT",
+  "dependencies": {
+    "shelljs": "^0.8.2"
+  }
+}
