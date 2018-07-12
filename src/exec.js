@@ -23,7 +23,7 @@ const cwd = process.cwd().concat('/');
 const { checkmate } = require(`${cwd}package.json`);
 
 if (checkmate == null) {
-  throw Error('Checkmate object not present in package.json');
+  throw Error('❌ Checkmate object not present in package.json');
 }
 
 const newline = () => console.log('');
@@ -82,11 +82,11 @@ module.exports = (function() {
     console.log('ERRORS');
     console.log(util.inspect(errors, false, null));
     newline();
-    throw Error('Checkmate FAILURE ❌');
+    throw Error('❌ Checkmate FAILURE');
   }
 
   lineBreak();
-  console.log('Checkmate SUCCESS ✅');
+  console.log('✅ Checkmate SUCCESS');
   lineBreak();
 })();
 
@@ -196,7 +196,7 @@ function checkSwitch(check, challenges) {
       return errors.length ? errors : true;
     }
     default:
-      throw Error(`Check "${check}" not supported. Please add support in checkmate package.`);
+      throw Error(`❌ Check "${check}" not supported. Please add support in checkmate package.`);
       break;
   }
 }
