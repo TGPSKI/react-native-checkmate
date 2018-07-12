@@ -82,11 +82,11 @@ module.exports = (function() {
     console.log('ERRORS');
     console.log(util.inspect(errors, false, null));
     newline();
-    throw Error('Checkmate FAILURE');
+    throw Error('Checkmate FAILURE ❌');
   }
 
   lineBreak();
-  console.log('Checkmate SUCCESS');
+  console.log('Checkmate SUCCESS ✅');
   lineBreak();
 })();
 
