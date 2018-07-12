@@ -11,23 +11,23 @@ const {
   programCheck,
   programsCheck
 } = require('./general.js');
+
 const { versionsCheck } = require('./versions.js');
 const { yarnIntegrityCheck, nodePathCheck } = require('./node.js');
 const { iosPodCheck } = require('./ios.js');
 const { gradleTasksCheck } = require('./android.js');
 const { envVarsCheck } = require('./env.js');
 
-const newline = () => console.log('');
-const lineBreak = () => console.log('--------------------------');
-
-let cwd = process.cwd();
-cwd = cwd.concat('/');
+const cwd = process.cwd().concat('/');
 
 try {
   var { checkmate } = require(`${cwd}package.json`);
 } catch (err) {
   throw new Error('Checkmate object not present in package.json');
 }
+
+const newline = () => console.log('');
+const lineBreak = () => console.log('--------------------------');
 
 ///////////////////
 ///////////////////
