@@ -33,7 +33,6 @@ Add a `checkmate` key and configuration object to your `package.json` file.
 
 ```json
 {
-  ...,
   "checkmate": {
     "verbose": false,
     "shellPath": "/bin/zsh",
@@ -76,13 +75,10 @@ Add a `checkmate` key and configuration object to your `package.json` file.
       "files": []
     }
   },
-  ...
 }
 ```
 
 # Error example
-
-package.json configuration:
 
 ```json
 {
@@ -127,11 +123,7 @@ package.json configuration:
 }
 ```
 
-Error output:
-
 ![failed-checkmate](assets/checkmate-failure.png)
-
-
 
 # Options Reference
 
@@ -157,52 +149,148 @@ executable program names as strings
 
 ### versions (object)
 
-Supported software:
+Supported software & expected version string format:
 
-* macOS
-* node
-* ruby
-* xcode
-* yarn
-* npm
+* macOS: "10.13.6"
+* node: "v8.11.3"
+* ruby: "2.3.1p112"
+* xcode: "9.4.1"
+* yarn: "1.7.0"
+* npm: "6.1.0"
+
+#### Shell Commands
+
+OSX VERSION
+
+`sw_vers | grep "ProductVersion" | awk '{print $2}'`
+
+NODE
+
+`node --version`
+
+RUBY
+
+`ruby --version | awk '{print $2}'`
+
+XCODE
+
+`xcodebuild -version | grep 'Xcode' | awk '{print $2}'`
+
+YARN
+
+`yarn --version`
+
+NPM
+
+`npm --version`
 
 ### envVars (string array)
 
+Validates exported
+
 ### env
 
-Validates environment files stored in $PROJECT_ROOT/$dir/[buildTypes]
+Validates environment files stored in $PROJECT_ROOT/$dir/env.[...buildTypes]
 
 #### dir (string)
 
+Environment files directory relative to $PROJECT_ROOT
+
 #### buildTypes (string array)
+
+Array of build types, i.e. ['dev', 'staging', 'release'].
+
+Maps to ->
+
+```
+$PROJECT_ROOT/$dir/env.dev
+$PROJECT_ROOT/$dir/env.staging
+$PROJECT_ROOT/$dir/env.release
+```
 
 ### node
 
-#### yarnIntegrity
+Validates yarn integrity, and custom dirs / files related to node / npm / yarn.
 
-#### dirs
+#### yarnIntegrity (boolean)
 
-#### files
+Perform a yarn integrity check on node_modules folder vs yarn.lock
+
+#### dirs (string array)
+
+Verify presence of directories, relative to $PROJECT_ROOT
+
+#### files (string array)
+
+Verify presence of files, relative to $PROJECT_ROOT
 
 ### android
 
-#### nodePath
+Validates custom node path parameter, gradle tasks, and custom dirs / files related to Android.
 
-#### gradle
+#### nodePath (string)
 
-#### dirs
+#### gradle (boolean)
 
-#### files
+#### dirs (string array)
+
+#### files (string array)
 
 ### ios
 
-#### nodePath
+Validates custom node path parameter, gradle tasks, and custom dirs / files related to Android.
 
-#### nodePathDir
+#### nodePath (string)
 
-#### nodePathFilename
+#### nodePathDir (string)
+
+#### nodePathFilename (string)
+
+#### pods (boolean)
+
+#### dirs (string array)
+
+#### files (string array)
 
 ### other
+
+#### dirs (string array)
+
+#### files (string array)
+
+# Module Usage
+
+Checkmate also exposes all validators in the root module. Import any of the sub-modules individually for custom validators. See `./src/*.js` for usage information.
+
+
+```
+module.exports = {
+  general: {
+    dirCheck,
+    dirsCheck,
+    fileCheck,
+    filesCheck,
+    programCheck,
+    programsCheck
+  },
+  versions: {
+    versionsCheck
+  },
+  node: {
+    yarnIntegrityCheck,
+    nodePathCheck
+  },
+  ios: {
+    iosPodCheck
+  },
+  android: {
+    gradleTasksCheck
+  },
+  env: {
+    envVarsCheck
+  }
+};
+```
 
 
 
