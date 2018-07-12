@@ -151,7 +151,7 @@ function checkSwitch(check, challenges) {
         }
       }
 
-      const dirsFilesCheck = checkDirsFiles(challenges);
+      const dirsFilesCheck = checkDirsFiles(challenges, (subDir = 'android'));
       if (dirsFilesCheck.constructor === Array) {
         errors.push(...dirsFilesCheck);
       }
@@ -177,7 +177,7 @@ function checkSwitch(check, challenges) {
         }
       }
 
-      const dirsFilesCheck = checkDirsFiles(challenges);
+      const dirsFilesCheck = checkDirsFiles(challenges, (subDir = 'ios'));
       if (dirsFilesCheck.constructor === Array) {
         errors.push(...dirsFilesCheck);
       }
@@ -201,8 +201,9 @@ function checkSwitch(check, challenges) {
   }
 }
 
-function checkDirsFiles(challenge) {
+function checkDirsFiles(challenge, subDir = null) {
   const errors = [];
+
   if (challenge.dirs && challenge.dirs.length) {
     console.log('** Directories');
     const dirChallenge = dirsCheck(challenge.dirs);
@@ -212,6 +213,9 @@ function checkDirsFiles(challenge) {
   }
   if (challenge.files && challenge.files.length) {
     console.log('** Files');
+    if (subDir) {
+      challenge.files = challenge.files.map(file => `${subDir}/${file}`);
+    }
     const fileChallenge = filesCheck(challenge.files);
     if (fileChallenge.constructor === Array) {
       errors.push(...fileChallenge);
