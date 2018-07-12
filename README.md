@@ -1,3 +1,5 @@
+![checkmate](https://raw.githubusercontent.com/TGPSKI/checkmate/master/assets/checkmate.png)
+
 # package.json example
 
 ```
