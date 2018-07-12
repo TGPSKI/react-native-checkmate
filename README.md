@@ -102,9 +102,25 @@ show / hide shell output
 
 ### programs (string array)
 
+```
+"programs": ["fastlane", "gem", "pod", "react-native", "badge"],
+```
+
 executable program names as strings
 
+
 ### versions (object)
+
+```
+"versions": {
+  "macOS": "10.13.6",
+  "node": "v8.11.3",
+  "ruby": "2.3.1p112",
+  "xcode": "9.4.1",
+  "yarn": "1.7.0",
+  "npm": "6.1.0"
+},
+```
 
 Supported software & expected format for version string:
 
@@ -126,9 +142,18 @@ _Commands_
 
 ### envVars (string array)
 
+```"envVars": ["ANDROID_SDK", "ANDROID_SDK_TOOLS", "ANDROID_PLATFORM_TOOLS"],```
+
 Validates exported environment variables, i.e. 'ANDROID_SDK_TOOLS'. Performs directory validation on env var values.
 
 ### env
+
+```
+"env": {
+  "dir": "env",
+  "buildTypes": ["dev", "staging", "release"]
+},
+```
 
 Validates environment files stored in $PROJECT_ROOT/$dir/env.[...buildTypes]
 
@@ -138,6 +163,14 @@ Validates environment files stored in $PROJECT_ROOT/$dir/env.[...buildTypes]
 
 ### node
 
+```
+"node": {
+  "yarnIntegrity": true,
+  "dirs": ["node_modules"],
+  "files": ["yarn.lock"]
+},
+```
+
 Validates yarn integrity, and custom dirs / files related to node / npm / yarn.
 
 * __yarnIntegrity (boolean)__ <br/> Perform a yarn integrity check on node_modules folder vs yarn.lock
@@ -146,26 +179,55 @@ Validates yarn integrity, and custom dirs / files related to node / npm / yarn.
 
 ### android
 
+```
+"android": {
+  "nodePath": true,
+  "gradle": true,
+  "dirs": ["android"],
+  "files": ["my-release-key.keystore"]
+},
+```
+
 Validates custom node path parameter, gradle tasks, and custom dirs / files related to Android.
 
-* __nodePath (boolean)__ <br/>
+* __nodePath (boolean)__ <br/> Enables presence check of NODE_BINARY variable in `~/.gradle/settings.gradle`. Used with NVM + project `build.gradle`.
 * __gradle (boolean)__ <br/> Verifies all gradle tasks are runnable. Downloads missing dependencies if necessary.
 * __dirs (string array)__ <br/> Verify presence of directories, relative to $PROJECT_ROOT/android
 * __files (string array)__ <br/> Verify presence of files, relative to $PROJECT_ROOT/android
 
 ### ios
 
+```
+"ios": {
+  "nodePath": true,
+  "nodePathDir": "env",
+  "nodePathFilename": "node_binary",
+  "pods": true,
+  "dirs": ["ios"],
+  "files": []
+}
+```
+
 Validates custom node path parameter, gradle tasks, and custom dirs / files related to Android.
 
-* __nodePath (boolean)__ <br/>
-* __nodePathDir (string)__ <br/>
-* __nodePathFilename (string)__ <br/>
+* __nodePath (boolean)__ <br/> Enables presence check of NODE_BINARY variable in $PROJECT_ROOT/$nodePathDir/$nodePathFilename. NODE_BINARY is sourced in Xcode build phases to use NVM node binary.
+* __nodePathDir (string)__ <br/> Set path to find $nodePathFilename, relative to $PROJECT_ROOT
+* __nodePathFilename (string)__ <br/> Set filename for custom node path variable.
 * __pods (boolean)__ <br/> Ensures podfile.lock and Pods/manifest.lock are equivalent
 * __dirs (string array)__ <br/> Verify presence of directories, relative to $PROJECT_ROOT/ios
 * __files (string array)__ <br/> Verify presence of files, relative to $PROJECT_ROOT/ios
 
 ### other
 
+```
+"other": {
+  "relative": true,
+  "dirs": ["foo"],
+  "files": ["foo/bar.txt", "bam/baz.conf"]
+}
+```
+
+* __relative (boolean)__ <br/> Set other validators to use relative ($PROJECT_ROOT) or absolute paths.
 * __dirs (string array)__ <br/> Verify presence of directories, relative to $PROJECT_ROOT
 * __files (string array)__ <br/> Verify presence of files, relative to $PROJECT_ROOT
 

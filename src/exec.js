@@ -140,6 +140,7 @@ function checkSwitch(check, challenges) {
         if (!nodePathCheck('android', cwd)) {
           errors.push('Android node path not set in $HOME/.gradle/settings.gradle');
         }
+        delete challenges.nodePath;
       }
 
       if (challenges.gradle) {
@@ -149,6 +150,7 @@ function checkSwitch(check, challenges) {
             'Gradle tasks are unrunnable. "cd ./android && .gradlw tasks --verbose" for more information'
           );
         }
+        delete challenges.gradle;
       }
 
       const dirsFilesCheck = checkDirsFiles(challenges, (subDir = 'android'));
@@ -168,6 +170,9 @@ function checkSwitch(check, challenges) {
         if (!nodePathCheck('ios', cwd, (customPath = nodePath))) {
           errors.push(`iOS node path not set in "${nodePath}"`);
         }
+        delete challenges.nodePath;
+        delete challenges.nodePathDir;
+        delete challenges.nodePathFilename;
       }
 
       if (challenges.pods) {
@@ -175,6 +180,7 @@ function checkSwitch(check, challenges) {
         if (!iosPodCheck(cwd)) {
           errors.push('Podfile out of sync.');
         }
+        delete challenges.pods;
       }
 
       const dirsFilesCheck = checkDirsFiles(challenges, (subDir = 'ios'));
@@ -188,7 +194,7 @@ function checkSwitch(check, challenges) {
       console.log('* Other');
       const errors = [];
 
-      const dirsFilesCheck = checkDirsFiles(challenges);
+      const dirsFilesCheck = checkDirsFiles(challenges, (relative = challenges.relative));
       if (dirsFilesCheck.constructor === Array) {
         errors.push(...dirsFilesCheck);
       }
@@ -201,12 +207,15 @@ function checkSwitch(check, challenges) {
   }
 }
 
-function checkDirsFiles(challenge, subDir = null) {
+function checkDirsFiles(challenge, subDir = null, relative = true) {
   const errors = [];
 
   if (challenge.dirs && challenge.dirs.length) {
     console.log('** Directories');
-    const dirChallenge = dirsCheck(challenge.dirs);
+    if (subDir) {
+      challenge.dirs = challenge.dirs.map(dir => `${subDir}/${dir}`);
+    }
+    const dirChallenge = dirsCheck(challenge.dirs, (relative = relative));
     if (dirChallenge.constructor === Array) {
       errors.push(...dirChallenge);
     }
@@ -216,7 +225,7 @@ function checkDirsFiles(challenge, subDir = null) {
     if (subDir) {
       challenge.files = challenge.files.map(file => `${subDir}/${file}`);
     }
-    const fileChallenge = filesCheck(challenge.files);
+    const fileChallenge = filesCheck(challenge.files, (relative = relative));
     if (fileChallenge.constructor === Array) {
       errors.push(...fileChallenge);
     }

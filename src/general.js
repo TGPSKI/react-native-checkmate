@@ -10,7 +10,7 @@ function dirCheck(dir) {
 }
 
 // Check array of directories for presence
-function dirsCheck(dirs) {
+function dirsCheck(dirs, relative = true) {
   const dirErrors = [];
   dirs.forEach(dir => {
     if (!dirCheck(dir)) {
@@ -31,7 +31,7 @@ function fileCheck(file) {
 }
 
 // Check array of files for presence
-function filesCheck(files) {
+function filesCheck(files, relative = true) {
   const fileErrors = [];
   files.forEach(file => {
     if (!shell.test('-f', file)) {

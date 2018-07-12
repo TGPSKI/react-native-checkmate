@@ -26,7 +26,7 @@
       "nodePath": true,
       "gradle": true,
       "dirs": ["android", "missing_dir_android"],
-      "files": ["android/missing_android.file"]
+      "files": ["missing_android.file"]
     },
     "ios": {
       "nodePath": true,
@@ -34,7 +34,7 @@
       "nodePathFilename": "node_binary",
       "pods": false,
       "dirs": ["ios", "missing_dir_ios"],
-      "files": ["ios/missing_ios.file"]
+      "files": ["missing_ios.file"]
     }
   }
 }

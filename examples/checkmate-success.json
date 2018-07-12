@@ -26,7 +26,7 @@
       "nodePath": true,
       "gradle": true,
       "dirs": ["android"],
-      "files": ["android/my-release-key.keystore"]
+      "files": ["my-release-key.keystore"]
     },
     "ios": {
       "nodePath": true,
