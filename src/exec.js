@@ -35,7 +35,7 @@ const lineBreak = () => console.log('--------------------------');
 ///////////////////
 ///////////////////
 
-module.exports = (function() {
+(function() {
   const verbose = checkmate.verbose;
 
   lineBreak();
