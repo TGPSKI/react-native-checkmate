@@ -134,11 +134,7 @@ Validates environment files stored in $PROJECT_ROOT/$dir/env.[...buildTypes]
 
 * __dir (string)__ <br/> Environment files directory relative to $PROJECT_ROOT
 
-* __buildTypes (string array)__ <br/>Array of build types, i.e. ['dev', 'staging', 'release'].<br>Maps to -><br/>```
-$PROJECT_ROOT/$dir/env.dev
-$PROJECT_ROOT/$dir/env.staging
-$PROJECT_ROOT/$dir/env.release
-```
+* __buildTypes (string array)__ <br/>Array of build types, i.e. ['dev', 'staging', 'release'].<br>Maps to -><br/>`$PROJECT_ROOT/$dir/env.dev`<br/>`$PROJECT_ROOT/$dir/env.staging`<br/>`$PROJECT_ROOT/$dir/env.release`
 
 ### node
 
