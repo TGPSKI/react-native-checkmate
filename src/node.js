@@ -1,14 +1,15 @@
 const shell = require('shelljs');
+const cwd = process.cwd().concat('/');
 
 // Verify node_modules vs yarn lockfile
-function yarnIntegrityCheck(cwd) {
+function yarnIntegrityCheck() {
   shell.cd(cwd);
   let out = shell.exec('yarn check --integrity').code;
   return out ? false : true;
 }
 
 // Check node path locations for packager
-function nodePathCheck(platform, cwd, customPathIOS = null) {
+function nodePathCheck(platform, customPathIOS = null) {
   const ios = customPath => {
     if (customPath == null) {
       throw Error('iOS node path not defined.');
