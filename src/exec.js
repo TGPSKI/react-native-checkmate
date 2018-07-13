@@ -118,7 +118,7 @@ function checkSwitch(check, challenges) {
       if (challenges.yarnIntegrity) {
         console.log('** Yarn integrity');
 
-        const yarnIntegrity = yarnIntegrityCheck(cwd);
+        const yarnIntegrity = yarnIntegrityCheck();
         if (!yarnIntegrity) {
           errors.push(`Yarn integrity failure.`);
         }
@@ -137,7 +137,7 @@ function checkSwitch(check, challenges) {
 
       if (challenges.nodePath) {
         console.log('** Node path');
-        if (!nodePathCheck('android', cwd)) {
+        if (!nodePathCheck('android')) {
           errors.push('Android node path not set in $HOME/.gradle/settings.gradle');
         }
         delete challenges.nodePath;
@@ -145,7 +145,7 @@ function checkSwitch(check, challenges) {
 
       if (challenges.gradle) {
         console.log('** Gradle tasks');
-        if (!gradleTasksCheck(cwd)) {
+        if (!gradleTasksCheck()) {
           errors.push(
             'Gradle tasks are unrunnable. "cd ./android && .gradlw tasks --verbose" for more information'
           );
@@ -167,7 +167,7 @@ function checkSwitch(check, challenges) {
       if (challenges.nodePath) {
         console.log('** Node path');
         const nodePath = `${cwd}${challenges.nodePathDir}/${challenges.nodePathFilename}`;
-        if (!nodePathCheck('ios', cwd, (customPath = nodePath))) {
+        if (!nodePathCheck('ios', (customPath = nodePath))) {
           errors.push(`iOS node path not set in "${nodePath}"`);
         }
         delete challenges.nodePath;
@@ -177,7 +177,7 @@ function checkSwitch(check, challenges) {
 
       if (challenges.pods) {
         console.log('** Pod sync');
-        if (!iosPodCheck(cwd)) {
+        if (!iosPodCheck()) {
           errors.push('Podfile out of sync.');
         }
         delete challenges.pods;
