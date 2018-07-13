@@ -19,9 +19,7 @@ Checkmate is a environment validation tool for React Native projects. Increase y
 
 # Install
 
-`yarn -D add TGPSKI/react-native-checkmate.git`
-
-Coming soon: ~~`yarn -D add react-native-checkmate`~~
+`yarn -D add react-native-checkmate`
 
 # Configure
 
