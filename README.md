@@ -10,11 +10,7 @@ Checkmate is a environment validation tool for React Native projects. Increase y
 
 * Run checkmate as part of your Fastfile. Use the yarn plugin as follows:
 
-```
-  yarn(
-    command: 'install',
-    package_path: './package.json'
-  )
+```ruby
   yarn(
     command: 'checkmate',
     package_path: './package.json'
@@ -23,7 +19,9 @@ Checkmate is a environment validation tool for React Native projects. Increase y
 
 # Install
 
-`yarn -D add react-native-checkmate`
+`yarn -D add TGPSKI/react-native-checkmate.git`
+
+Coming soon: ~~`yarn -D add react-native-checkmate`~~
 
 # Configure
 
