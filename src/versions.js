@@ -40,7 +40,7 @@ function versionsCheck(versions) {
       case 'npm':
         return shell.exec('npm --version').stdout.replace('\n', '');
       default:
-        throw new Error('Version check command does not exist for all programs.');
+        throw Error(`Version check command does not exist for program ${program}.`);
     }
   }
 
