@@ -1,7 +1,8 @@
 const shell = require('shelljs');
 
 // Podfile.lock and Pods/Manifest.lock should match exactly
-function iosPodCheck(cwd) {
+function iosPodCheck() {
+  const cwd = process.cwd().concat('/');
   const iosDir = cwd.concat('ios');
   const podfileLockPath = iosDir.concat('/Podfile.lock');
   const manifestLockPath = iosDir.concat('/Pods/Manifest.lock');
