@@ -2,6 +2,8 @@
 
 # Checkmate for React Native
 
+**Part of the [React Native Devops Guide](https://medium.com/@tgpski/react-native-devops-guide-2d8e4755ebee).**
+
 Checkmate is an environment validation tool for React Native projects. Increase your build success rate among multiple collaborators and CI servers. Catch build configuration errors at the start of the build, instead of 95% through.
 
 * Run checkmate as a standalone command. `checkmate` in your React Native project root directory.
